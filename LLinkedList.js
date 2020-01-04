@@ -1,4 +1,4 @@
-class Node() {
+class Node {
 	constructor(element) {
 		this.element = element
 		this.prev = null
@@ -14,7 +14,7 @@ class LLinkedList {
 		this.head = new Node('head')
 	}
 	insert(newEle, item) {
-		const newNode = new Node('newEle')
+		const newNode = new Node(newEle)
 		const currNode = this.find(item)
 		newNode.prev = currNode
 		// 感觉缺少逻辑
