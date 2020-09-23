@@ -41,3 +41,4 @@ console.log(q.toString())
 console.log('Front of queue' + q.front())
 console.log('Back of queue' + q.back())
 
+module.exports = Queue
