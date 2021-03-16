@@ -20,7 +20,7 @@ class List {
 		let insertPos = this.find(after)
 		if (insertPos > -1) {
 			this.dataStore.splice(insertPos + 1, 0, element)
-			++this.listSize
+				++this.listSize
 			return true
 		}
 		return false
@@ -29,7 +29,7 @@ class List {
 		let findAt = this.find(element)
 		if (findAt > -1) {
 			this.dataStore.splice(findAt, 1)
-			--this.listSize
+				--this.listSize
 			return true
 		}
 		return false
@@ -40,7 +40,7 @@ class List {
 		this.listSize = this.pos = 0
 	}
 	contains(element) {
-		for(let i = 0; i < this.listSize; i++) {
+		for (let i = 0; i < this.listSize; i++) {
 			if (this.dataStore[i] === element) {
 				return true
 			}
@@ -111,10 +111,10 @@ names.prev()
 console.log(names.getElement())
 
 // 迭代器
-for(names.front(); names.hasNext(); names.next()) {
+for (names.front(); names.hasNext(); names.next()) {
 	console.log(names.getElement())
 }
 
-for(names.end(); names.hasPrev(); names.prev()) {
+for (names.end(); names.hasPrev(); names.prev()) {
 	console.log(names.getElement())
 }

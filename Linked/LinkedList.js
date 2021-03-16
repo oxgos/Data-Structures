@@ -8,8 +8,8 @@ class Node {
 // 链表是由一组节点组成的集合。每个节点都使用一个对象的引用指向它的
 //   后继。指向另一个节点的引用叫做链.
 class LinkedList {
-	constructor() {
-		this.head = new Node('head')
+	constructor(element) {
+		this.head = new Node(element || 'head')
 	}
 	find(element) {
 		let currNode = this.head
@@ -40,9 +40,12 @@ class LinkedList {
 	}
 	display() {
 		let currNode = this.head
+		console.log(currNode.element)
 		while(currNode.next !== null) {
 			console.log(currNode.next.element)
 			currNode = currNode.next
 		}
 	}
 }
+
+module.exports = LinkedList
