@@ -1,0 +1,29 @@
+{
+  "name": "data-structures",
+  "version": "1.0.0",
+  "description": "常用数据结构",
+  "main": "index.js",
+  "directories": {
+    "test": "jest test/*.js"
+  },
+  "scripts": {
+    "test": "jest ./tests/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oxgos/Data-Structures.git"
+  },
+  "keywords": [
+    "data",
+    "structure"
+  ],
+  "author": "Gavin_Guo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oxgos/Data-Structures/issues"
+  },
+  "homepage": "https://github.com/oxgos/Data-Structures#readme",
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}

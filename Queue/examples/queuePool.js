@@ -15,8 +15,8 @@ class QueuePool {
     const task = this.queue.dequeue()
     // 执行任务
     task().then((res) => {
-      // Todo something
-      console.log(res)
+      // Todo something with res
+
       this._run()
     })
   }
@@ -31,20 +31,4 @@ class QueuePool {
   }
 }
 
-// Test
-let count = 0
-function task() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      count++
-      resolve(`执行完第${count}个任务`)
-    }, 1000)
-  })
-}
-
-const queuePool = new QueuePool()
-queuePool.push(task)
-queuePool.push(task)
-queuePool.push(task)
-queuePool.push(task)
-queuePool.push(task)
+module.exports = QueuePool

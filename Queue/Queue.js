@@ -16,7 +16,7 @@ class Queue {
 	}
 	toString() {
 		let retStr = ''
-		for (let i = 0; i <= this.dataStore.length - 1; i++) {
+		for (let i = 0, len = this.dataStore.length - 1; i <= len; i++) {
 			retStr += `${this.dataStore[i]}\n`
 		}
 		return retStr

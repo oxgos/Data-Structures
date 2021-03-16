@@ -24,7 +24,11 @@ class LinkedList {
 					currNode.next.element !== element) {
 			currNode = currNode.next
 		}
-		return currNode
+		if (!currNode.next || currNode.next.element !== element) {
+			return null
+		} else {
+			return currNode
+		}
 	}
 	insert(newElement, item) {
 		const newNode = new Node(newElement)
