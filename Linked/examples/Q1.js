@@ -32,7 +32,7 @@ function isCircle(list) {
   return false
 }
 
-// 方法二: 快慢指针法
+// 方法二: 快慢指针法,如果相遇即有环
 function isCircle2(list) {
   let curNode = list.head
   let slow = curNode.next
