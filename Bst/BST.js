@@ -3,17 +3,8 @@
  *    优点: 查找速度快，由其获取最大值和最小值
  * 三种遍历：中序，先序，后序
  */
-
-class Node {
-  constructor(data, left, right) {
-    this.data = data
-    this.left = left
-    this.right = right
-  }
-  get value() {
-    return this.data
-  }
-}
+const Node = require('./utils/node')
+const Queue = require('../Queue/Queue')
 
 class BST {
   constructor() {
@@ -129,6 +120,22 @@ class BST {
     }
     return array
   }
+  // 中序（用迭代方法实现）
+  inOrderInteration(node) {
+    const stack = []
+    const result = []
+    let current = node
+    while (current || stack.length > 0) {
+      while (current) {
+        stack.push(current)
+        current = current.left
+      }
+      current = stack.pop()
+      result.push(current.value)
+      current = current.right
+    }
+    return result
+  }
   // 前序（中节点在前面）
   preOrder(node, array = []) {
     if (!(node == null)) {
@@ -137,6 +144,22 @@ class BST {
       this.preOrder(node.right, array)
     }
     return array
+  }
+  // 前序（用迭代方法实现）
+  preOrderInteration(node) {
+    const stack = []
+    const result = []
+    let current = node
+    while (current || stack.length > 0) {
+      while (current) {
+        result.push(current.value)
+        stack.push(current)
+        current = current.left
+      }
+      current = stack.pop()
+      current = current.right
+    }
+    return result
   }
   // 后序（中节点在最后）
   postOrder(node, array = []) {
@@ -147,6 +170,58 @@ class BST {
     }
     return array
   }
+  // 后序（用迭代方法实现）
+  postInteration(node) {
+    const stack = []
+    const result = []
+    let current = node
+    let last = null // 记录右节点已被访问，例如：中序BD,D是右节点并已经是最底，D出栈后继续出栈并记录，B的right为已记录的D，即可继续出栈
+    while (current || stack.length > 0) {
+      while (current) {
+        stack.push(current)
+        current = current.left
+      }
+      if (!current.right || current.right === last) {
+        current = stack.pop()
+        result.push(current.value)
+        last = current
+        current = null // 继续出栈
+      } else {
+        current = current.right
+      }
+    }
+    return result
+  }
+  // 层级遍历
+  levelOrder() {
+    if (!this.root) return null
+    let result = []
+    // 创建队列
+    const queue = new Queue()
+    queue.enqueue(this.root)
+    while (!queue.empty()) {
+      const currentNode = queue.dequeue()
+      result.push(currentNode.value)
+      if (currentNode.left) {
+        queue.enqueue(currentNode.left)
+      }
+      if (currentNode.right) {
+        queue.enqueue(currentNode.right)
+      }
+    }
+    return result
+  }
+  // 树的深度
+  getDeep(node, deep) {
+    deep = deep || 0
+    if (node == null) {
+      return deep
+    }
+    deep++
+    var dleft = this.getDeep(node.left, deep)
+    var dright = this.getDeep(node.right, deep)
+    return Math.max(dleft, dright)
+  }
 }
 
 const bst = new BST()
@@ -154,7 +229,11 @@ const array = [10, 4, 1, 2, 3, 6, 50, 20, 31, 60]
 for (let i = 0; i <= array.length - 1; i++) {
   bst.insert(array[i])
 }
-const root = bst.find(10)
-console.log(bst.inOrder(root).join(','))
-console.log(bst.preOrder(root).join(','))
-console.log(bst.postOrder(root).join(','))
+const root = bst.root
+console.log(bst.levelOrder())
+// console.log(bst.inOrder(root).join(','))
+// console.log(bst.inOrderInteration(root).join(','))
+// console.log(bst.preOrder(root).join(','))
+// console.log(bst.preOrderInteration(root).join(','))
+// console.log(bst.postOrder(root).join(','))
+// console.log(bst.getDeep(root, 0))
